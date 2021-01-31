@@ -8,7 +8,6 @@ const LOCAL_STORAGE_KEY = 'todoApp.todos'
 function App() {
   const [todos, setTodos] = useState([]);
   const todoNameRef = useRef()
-
   //load saved data in launch
   useEffect(()=>{
     const storedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
@@ -32,9 +31,10 @@ function App() {
     setTodos(prevTodos => {
       return [...prevTodos, {id:uuidv4(), name:name, complete:false}];
     });
+    todoNameRef.current.value = "";
   }
   function handleClearAll(e){
-    setTodos(_ =>{
+    setTodos(t =>{
       return []
     });
   }
@@ -42,10 +42,10 @@ function App() {
     <>
       {/*  <Component props={props}> */}
       
-      <input ref={todoNameRef}type="text" />
+      <input ref={todoNameRef} type="text"/>
       <button onClick={handleAddTodo}>Add Todo</button>
       <button onClick={handleClearAll}>Clear all</button>
-      <div>{todos.filter(t=>!t.complete).length} things left to do</div>
+      <div>{todos.filter(t=>!t.complete).length} things left to do. {todos.filter(t=>!t.complete).length === 0 && "Hooray!"}</div>
       <TodoList todos={todos} toggleTodo={toggleTodo}/> 
       {/* <div>{JSON.stringify(todos)}</div> */}
     </>
