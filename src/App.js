@@ -3,7 +3,6 @@ import React, {useState, useRef, useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import TodoList from './TodoList';
 import MyGoldenLayout from './MyGoldenLayout';
-import GoldenLayout from 'golden-layout';
 import { v4 as uuidv4 } from 'uuid';
 
 const LOCAL_STORAGE_KEY = 'todoApp.todos'
